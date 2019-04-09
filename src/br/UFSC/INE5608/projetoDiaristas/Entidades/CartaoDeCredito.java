@@ -1,22 +1,23 @@
+package br.UFSC.INE5608.projetoDiaristas.Entidades;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.UFSC.INE5608.projetoDiaristas.Entidades;
+
 
 /**
  *
  * @author Ismael
  */
-class CartaoDeCredito {
+public class CartaoDeCredito {
     private String nomeCartao;
     private String numeroCartao;
-    private int validade;
-    private int codigoCVV;
+    private String validade;
+    private String codigoCVV;
     private Integer cpfProprietario;
 
-    public CartaoDeCredito(String nomeCartao, String numeroCartao, int validade, int codigoCVV, Integer cpfProprietario) {
+    public CartaoDeCredito(String nomeCartao, String numeroCartao, String validade, String codigoCVV, Integer cpfProprietario) {
         this.nomeCartao = nomeCartao;
         this.numeroCartao = numeroCartao;
         this.validade = validade;
@@ -40,19 +41,19 @@ class CartaoDeCredito {
         this.numeroCartao = numeroCartao;
     }
 
-    public int getValidade() {
+    public String getValidade() {
         return validade;
     }
 
-    public void setValidade(int validade) {
+    public void setValidade(String validade) {
         this.validade = validade;
     }
 
-    public int getCodigoCVV() {
+    public String getCodigoCVV() {
         return codigoCVV;
     }
 
-    public void setCodigoCVV(int codigoCVV) {
+    public void setCodigoCVV(String codigoCVV) {
         this.codigoCVV = codigoCVV;
     }
 

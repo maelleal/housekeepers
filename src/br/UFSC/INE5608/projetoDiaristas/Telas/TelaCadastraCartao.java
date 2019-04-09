@@ -5,6 +5,9 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
+import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorCartaoCredito;
+import com.sun.xml.internal.ws.util.StringUtils;
+
 /**
  *
  * @author Ismael
@@ -80,11 +83,21 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
         botaoCadastrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadastrar.setText("Cadastrar");
         botaoCadastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCancelar.setForeground(new java.awt.Color(153, 0, 51));
         botaoCancelar.setText("Cancelar");
         botaoCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +176,24 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
     private void campoNomeCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeCartaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeCartaoActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        ControladorCartaoCredito.getInstance().abreTelaCadastroContratante();
+        dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+        String cvv = campoCVV.getText();
+        String nomeCartao = campoNomeCartao.getText();
+        String numeroCartao = campoNumeroCartao.getText();       
+        String validade = campoValidade.getText(); 
+        
+//        if(!StringUtils.isBlank(cvv)){
+//        }
+        
+               
+                
+    }//GEN-LAST:event_botaoCadastrarActionPerformed
 
    
 

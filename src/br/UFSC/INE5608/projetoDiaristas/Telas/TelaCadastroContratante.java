@@ -5,6 +5,8 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
+import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorContratante;
+
 /**
  *
  * @author Ismael
@@ -61,7 +63,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelContratante.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.black), "Cadastro de usuário contratante de serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        painelContratante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de usuário contratante de serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         txtNome.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtNome.setText("Nome completo *");
@@ -78,6 +80,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         botaoCadastraCartao.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         botaoCadastraCartao.setText("Cadastrar cartão *");
         botaoCadastraCartao.setBorder(new javax.swing.border.MatteBorder(null));
+        botaoCadastraCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastraCartaoActionPerformed(evt);
+            }
+        });
 
         txtHasCartaCadastrado.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtHasCartaCadastrado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,7 +98,12 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtNumeroComodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNumeroComodos.setText("* Numero de cômodos:");
 
-        comboNumeroComodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboNumeroComodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dois cômodos", "Três cômodos", "Quatro cômodos", "Cinco cômodos", "Seis cômodos", "Sete cômodos", "Oito ou mais cômodos" }));
+        comboNumeroComodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNumeroComodosActionPerformed(evt);
+            }
+        });
 
         checkSacada.setText("Possui sacada");
         checkSacada.addActionListener(new java.awt.event.ActionListener() {
@@ -126,27 +138,26 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         painelDadosImovelLayout.setHorizontalGroup(
             painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDadosImovelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelDadosImovelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtNumeroComodos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(comboNumeroComodos, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelDadosImovelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkQuintal)
-                            .addComponent(checkSacada)
-                            .addComponent(checkAnivalEstimacao)
-                            .addComponent(jCheckBox4))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(checkQuintal)
+                    .addComponent(checkSacada)
+                    .addComponent(checkAnivalEstimacao)
+                    .addComponent(jCheckBox4))
+                .addContainerGap(121, Short.MAX_VALUE))
+            .addGroup(painelDadosImovelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtNumeroComodos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(comboNumeroComodos, 0, 1, Short.MAX_VALUE)
+                .addContainerGap())
         );
         painelDadosImovelLayout.setVerticalGroup(
             painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDadosImovelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumeroComodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelDadosImovelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumeroComodos, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboNumeroComodos))
                 .addGap(18, 18, 18)
                 .addComponent(checkSacada)
@@ -165,6 +176,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         botaoCadastraUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botaoCadastraUsuario.setText("Cadastrar Usuário");
         botaoCadastraUsuario.setBorder(new javax.swing.border.MatteBorder(null));
+        botaoCadastraUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastraUsuarioActionPerformed(evt);
+            }
+        });
 
         txtCamposObrigatorios.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCamposObrigatorios.setText("* Estes campos são de preenchimento obrigatório.");
@@ -173,6 +189,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         botaoCancela.setForeground(new java.awt.Color(153, 0, 51));
         botaoCancela.setText("Cancelar");
         botaoCancela.setBorder(new javax.swing.border.MatteBorder(null));
+        botaoCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelContratanteLayout = new javax.swing.GroupLayout(painelContratante);
         painelContratante.setLayout(painelContratanteLayout);
@@ -283,6 +304,33 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void comboNumeroComodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroComodosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNumeroComodosActionPerformed
+
+    private void botaoCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelaActionPerformed
+        ControladorContratante.getInstance().abreTelaInicial();
+    }//GEN-LAST:event_botaoCancelaActionPerformed
+
+    private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
+        //colocar codigo para cadastrar usuário
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_botaoCadastraUsuarioActionPerformed
+
+    private void botaoCadastraCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraCartaoActionPerformed
+        ControladorContratante.getInstance().abreTelaCartao();
+    }//GEN-LAST:event_botaoCadastraCartaoActionPerformed
 
     
 
