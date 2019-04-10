@@ -84,15 +84,14 @@ public class ControladorCartaoCredito {
         this.codigoCvv = CodigoCvv;
     }
     
-    public void cadastraCartao(Integer cpfProprietario){
+    public CartaoDeCredito cadastraCartao(Integer cpfProprietario){
         
         CartaoDeCredito cartaoDeCredito = new CartaoDeCredito(nomeCartao, numeroCartao, dataValidade, 
                 codigoCvv, cpfProprietario);
         CartaoDeCreditoDAO.getInstancia().put(cartaoDeCredito);
-        //tirar daqui
-        System.out.println("Cartao Cadastrado");
+        System.out.println("Cartao Cadastrado"); //tirar daqui
         limpaDadosCartao();
-        
+        return cartaoDeCredito;
     }
     
     private void limpaDadosCartao(){

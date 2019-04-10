@@ -183,16 +183,15 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        String cvv = campoCVV.getText();
+        String numeroCartao = campoNumeroCartao.getText();   
         String nomeCartao = campoNomeCartao.getText();
-        String numeroCartao = campoNumeroCartao.getText();       
         String validade = campoValidade.getText(); 
+        String cvv = campoCVV.getText();
         
-//        if(!StringUtils.isBlank(cvv)){
-//        }
-        
-               
-                
+        if(!cvv.isEmpty() && !nomeCartao.isEmpty() && !numeroCartao.isEmpty() && !validade.isEmpty()){
+            ControladorCartaoCredito.getInstance().setDadosCartao(numeroCartao, nomeCartao, validade, cvv);
+        }
+        dispose();
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
    

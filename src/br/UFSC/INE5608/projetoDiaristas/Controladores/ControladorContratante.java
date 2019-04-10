@@ -5,8 +5,8 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Controladores;
 
-import br.UFSC.INE5608.projetoDiaristas.Entidades.CartaoDeCredito;
-import br.UFSC.INE5608.projetoDiaristas.Telas.TelaCadastraCartao;
+import br.UFSC.INE5608.projetoDiaristas.Entidades.Contratante;
+import br.UFSC.INE5608.projetoDiaristas.Entidades.ContratanteDAO;
 import br.UFSC.INE5608.projetoDiaristas.Telas.TelaCadastroContratante;
 
 /**
@@ -40,6 +40,24 @@ public class ControladorContratante {
     }
     
     
+    public void cadastrarContratante(
+            Integer numeroCPF, Integer numeroRG, String nome, String endereco, 
+                String observacoes, int numeroComodos, boolean possuiQuintal, boolean 
+                    possuiSacada, boolean possuiAnimal, boolean outraCoisa){
+        
+        Contratante contratante = new Contratante(numeroCPF, numeroRG, nome, endereco, numeroComodos,
+            ControladorCartaoCredito.getInstance().cadastraCartao(numeroCPF));
+        
+        contratante.setObservacoes(observacoes);
+        contratante.setPossuiQuintal(possuiQuintal);
+        contratante.setPossuiSacada(possuiSacada);
+        contratante.setPossuiAnimal(possuiAnimal);
+        contratante.setOutraCoisa(possuiSacada);
+        // serializa
+        ContratanteDAO.getInstancia().put(contratante);
+    }
     
-    
+    public void buscaContratantePeloCPF (Integer cpf){
+        
+    }
 }

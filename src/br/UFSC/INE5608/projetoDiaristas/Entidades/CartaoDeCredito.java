@@ -65,5 +65,4 @@ public class CartaoDeCredito {
         this.cpfProprietario = cpfProprietario;
     }
     
-    
 }

@@ -315,15 +315,24 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
 
     private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
         //colocar codigo para cadastrar usuário
-                
+        Integer cpf = Integer.parseInt(campoCPF.getText());
+        Integer rg = Integer.parseInt(campoRG.getText());       
+        //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());   
+                 
+        ControladorContratante.getInstance().cadastrarContratante(
+            cpf,
+            rg, 
+            campoNome.getText(), 
+            campoEndereco.getText(),
+            campoObservacoes.getText(), 
+            2,
+            //numComodos, 
+            checkQuintal.isSelected(),
+            checkSacada.isSelected(), 
+            checkAnivalEstimacao.isSelected(), 
+            jCheckBox4.isSelected()  
         
-        
-        
-        
-        
-        
-        
-        
+        );
         
         
     }//GEN-LAST:event_botaoCadastraUsuarioActionPerformed

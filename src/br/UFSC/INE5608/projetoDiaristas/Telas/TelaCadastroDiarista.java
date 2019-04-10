@@ -65,7 +65,7 @@ public class TelaCadastroDiarista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelDiarista.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.black), "Cadastro de usuário diarista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        painelDiarista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de usuário diarista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
         txtNome.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtNome.setText("Nome completo *");

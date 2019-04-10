@@ -22,14 +22,14 @@ public class Contratante {
     private boolean possuiAnimal;
     private boolean outraCoisa;
 
-    public Contratante(Integer numeroCPF, Integer numeroRG, String nome, String endereco, 
-            CartaoDeCredito cartaoDeCredito, int numeroComodos) {
+    public Contratante(Integer numeroCPF, Integer numeroRG, String nome, 
+            String endereco, int numeroComodos, CartaoDeCredito cartaoDeCredito) {
         this.numeroCPF = numeroCPF;
         this.numeroRG = numeroRG;
         this.nome = nome;
         this.endereco = endereco;
-        this.cartaoDeCredito = cartaoDeCredito;
         this.numeroComodos = numeroComodos;
+        this.cartaoDeCredito = cartaoDeCredito;
     }
 
     
@@ -119,6 +119,10 @@ public class Contratante {
 
     public void setOutraCoisa(boolean outraCoisa) {
         this.outraCoisa = outraCoisa;
+    }
+    
+    public void serializaContratante(Contratante contratante){
+        ContratanteDAO.getInstancia().put(contratante);
     }
     
     public Contratante bustaContratantePeloCPF (Integer cpf){
