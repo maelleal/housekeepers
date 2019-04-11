@@ -48,7 +48,6 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         campoEndereco = new javax.swing.JTextField();
         campoRG = new javax.swing.JTextField();
         campoNome = new javax.swing.JTextField();
-        campoCPF = new javax.swing.JTextField();
         painelDadosImovel = new javax.swing.JPanel();
         txtNumeroComodos = new javax.swing.JLabel();
         comboNumeroComodos = new javax.swing.JComboBox<>();
@@ -60,6 +59,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         botaoCadastraUsuario = new javax.swing.JButton();
         txtCamposObrigatorios = new javax.swing.JLabel();
         botaoCancela = new javax.swing.JButton();
+        campoCPF = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,6 +195,12 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
             }
         });
 
+        try {
+            campoCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout painelContratanteLayout = new javax.swing.GroupLayout(painelContratante);
         painelContratante.setLayout(painelContratanteLayout);
         painelContratanteLayout.setHorizontalGroup(
@@ -212,8 +218,6 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtRG)
                                 .addComponent(txtCPF)
@@ -223,7 +227,10 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                                 .addComponent(txtEndereco))
                             .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCartaoObrigatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(campoCPF, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoRG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                         .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(painelDadosImovel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,8 +252,8 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
+                        .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(txtRG)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoRG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,11 +318,22 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
 
     private void botaoCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelaActionPerformed
         ControladorContratante.getInstance().abreTelaInicial();
+        dispose();
     }//GEN-LAST:event_botaoCancelaActionPerformed
 
     private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
         //colocar codigo para cadastrar usuário
-        Integer cpf = Integer.parseInt(campoCPF.getText());
+        
+        String cpfTemp = campoCPF.getText();
+        cpfTemp = cpfTemp.replace( " " , ""); //tira espaço em branco
+        cpfTemp = cpfTemp.replace( "." , ""); //tira ponto
+        cpfTemp = cpfTemp.replace( "/" , ""); //tira barra
+        cpfTemp = cpfTemp.replace( "-" , ""); //tira hífen
+        
+        System.out.println(campoCPF.getText());
+        System.out.println(cpfTemp);
+        Integer cpf = Integer.parseInt(cpfTemp);
+        System.out.println(cpf);
         Integer rg = Integer.parseInt(campoRG.getText());       
         //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());   
                  
@@ -347,7 +365,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     private javax.swing.JButton botaoCadastraCartao;
     private javax.swing.JButton botaoCadastraUsuario;
     private javax.swing.JButton botaoCancela;
-    private javax.swing.JTextField campoCPF;
+    private javax.swing.JFormattedTextField campoCPF;
     private javax.swing.JTextField campoEndereco;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoObservacoes;

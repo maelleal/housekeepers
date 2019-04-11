@@ -5,12 +5,19 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
+import java.text.ParseException;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author Ismael
  */
 public class TelaLogin extends javax.swing.JFrame {
     private static TelaLogin instancia;
+    private String usuarioLogin;
+    private String senhaLogin;
+    
     public static TelaLogin getInstance() {
         if(instancia == null){
             instancia = new TelaLogin();
@@ -24,6 +31,8 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,11 +47,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JLabel();
         txtSenha = new javax.swing.JLabel();
         txtCabecalho = new javax.swing.JLabel();
-        campoUsuario = new javax.swing.JTextField();
-        campoSenha = new javax.swing.JTextField();
         txtRecomendaCPF = new javax.swing.JLabel();
         botaoConectar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+        campoUsuario = new javax.swing.JFormattedTextField();
+        campoSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,28 +77,49 @@ public class TelaLogin extends javax.swing.JFrame {
         botaoCancelar.setText("Cancelar");
         botaoCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        try {
+            campoUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoUsuarioActionPerformed(evt);
+            }
+        });
+
+        campoSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoSenha.setText("jPasswordField1");
+        campoSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoSenhaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSenha)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRecomendaCPF))
-                    .addComponent(campoUsuario)
-                    .addComponent(campoSenha))
-                .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botaoConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoSenha)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(campoUsuario)
+                        .addComponent(txtCabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSenha)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtRecomendaCPF))))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,9 +134,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -127,13 +157,27 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
+        usuarioLogin = campoUsuario.getText();
+        usuarioLogin = usuarioLogin.replace( " " , ""); //tira espaço em branco
+        usuarioLogin = usuarioLogin.replace( "." , ""); //tira ponto
+        usuarioLogin = usuarioLogin.replace( "/" , ""); //tira barra
+        usuarioLogin = usuarioLogin.replace( "-" , ""); //tira hífen
+        
+        
+    }//GEN-LAST:event_campoUsuarioActionPerformed
+
+    private void campoSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoSenhaMouseClicked
+        campoSenha.setText("");
+    }//GEN-LAST:event_campoSenhaMouseClicked
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoConectar;
-    private javax.swing.JTextField campoSenha;
-    private javax.swing.JTextField campoUsuario;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JFormattedTextField campoUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txtCabecalho;
     private javax.swing.JLabel txtRecomendaCPF;

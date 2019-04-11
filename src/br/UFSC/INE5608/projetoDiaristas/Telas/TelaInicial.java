@@ -130,14 +130,17 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void botaoCadastraContratanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraContratanteActionPerformed
         ControladorPrincipal.getInstance().abreTelaCadastroContratante();
+        dispose();
     }//GEN-LAST:event_botaoCadastraContratanteActionPerformed
 
     private void botaoCadastraDiaristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraDiaristaActionPerformed
         ControladorPrincipal.getInstance().abreTelaCadastroDiarista();
+        dispose();
     }//GEN-LAST:event_botaoCadastraDiaristaActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         ControladorPrincipal.getInstance().abreTelaLogin();
+        dispose();
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
 

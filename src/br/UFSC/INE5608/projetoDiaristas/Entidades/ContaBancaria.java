@@ -5,11 +5,13 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ismael
  */
-class ContaBancaria {
+class ContaBancaria implements Serializable {
     private String nomeBanco;
     private String tipoConta;
     private int numeroAgencia;

@@ -19,34 +19,34 @@ import java.util.HashMap;
  *
  * @author Ismael
  */
-public class DiaristaDAO implements Serializable {
-    private static DiaristaDAO instancia;
-    private HashMap<Integer, Diarista> cacheDiaristas = new HashMap<>();
-    private final String arquivoDiaristas = "Diarista.dat";
+public class ContratacaoServicoDAO implements Serializable {
+    private static ContratacaoServicoDAO instancia;
+    private HashMap<Integer, ContratacaoServico> cacheContratacaoServico = new HashMap<>();
+    private final String arquivoContratacaoServico = "Diarista.txt";
     
-    private DiaristaDAO (){
+    private ContratacaoServicoDAO (){
         load();
     }
     
-    public Diarista get(Integer numeroDiarista){
-        return cacheDiaristas.get(numeroDiarista);
+    public ContratacaoServico get(Integer codigoContratacaoServico){
+        return cacheContratacaoServico.get(codigoContratacaoServico);
     }
     
-    public void put(Diarista diarista){
-        cacheDiaristas.put(diarista.getNumeroCPF(), diarista);
+    public void put(ContratacaoServico contratacao){
+        cacheContratacaoServico.put(contratacao.getCodigoContratacaoServico(), contratacao);
         this.persist();
     }
     
-    public void remove(Integer numeroDiarista){
-	cacheDiaristas.remove(numeroDiarista);
+    public void remove(Integer codigoContratacaoServico){
+	cacheContratacaoServico.remove(codigoContratacaoServico);
 	persist();
     }
     
     public void persist(){
         try{
-           FileOutputStream fout = new FileOutputStream(arquivoDiaristas);
+           FileOutputStream fout = new FileOutputStream(arquivoContratacaoServico);
            ObjectOutputStream oo = new ObjectOutputStream(fout);
-           oo.writeObject(cacheDiaristas);
+           oo.writeObject(cacheContratacaoServico);
            
            oo.flush();
            fout.flush();
@@ -65,10 +65,10 @@ public class DiaristaDAO implements Serializable {
     
     public void load () {
         try {
-            FileInputStream fin = new FileInputStream(arquivoDiaristas);
+            FileInputStream fin = new FileInputStream(arquivoContratacaoServico);
             ObjectInputStream oi = new ObjectInputStream(fin);
         
-            this.cacheDiaristas = (HashMap<Integer, Diarista>) oi.readObject();
+            this.cacheContratacaoServico = (HashMap<Integer, ContratacaoServico>) oi.readObject();
             
             oi.close();
             fin.close();
@@ -85,14 +85,15 @@ public class DiaristaDAO implements Serializable {
         }
     }
     
-    public static DiaristaDAO getInstancia(){
+    public static ContratacaoServicoDAO getInstancia(){
         if(instancia == null){
-            instancia = new DiaristaDAO();
+            instancia = new ContratacaoServicoDAO();
         }
         return instancia;
     }
     
-    public Collection<Diarista> getList(){
-	return cacheDiaristas.values();
+    public Collection<ContratacaoServico> getList(){
+        load();
+	return cacheContratacaoServico.values();
     }
 }

@@ -5,11 +5,13 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ismael
  */
-public class Contratante {
+public class Contratante implements Serializable{
     private Integer numeroCPF;
     private Integer numeroRG;
     private String nome;
@@ -120,11 +122,7 @@ public class Contratante {
     public void setOutraCoisa(boolean outraCoisa) {
         this.outraCoisa = outraCoisa;
     }
-    
-    public void serializaContratante(Contratante contratante){
-        ContratanteDAO.getInstancia().put(contratante);
-    }
-    
+       
     public Contratante bustaContratantePeloCPF (Integer cpf){
         return null;
     }

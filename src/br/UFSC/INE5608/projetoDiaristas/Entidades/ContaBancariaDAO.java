@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ import java.util.HashMap;
  *
  * @author Ismael
  */
-public class ContaBancariaDAO {
+public class ContaBancariaDAO implements Serializable {
     private static ContaBancariaDAO instancia;
     private HashMap<Integer, ContaBancaria> cacheContaBancaria = new HashMap<>();
     private final String arquivoContaBancaria = "ContaBancaria.dat";

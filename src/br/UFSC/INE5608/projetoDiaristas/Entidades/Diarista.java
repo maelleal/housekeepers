@@ -5,13 +5,14 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Entidades;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Ismael
  */
-public class Diarista {
+public class Diarista implements Serializable {
     private Integer numeroCPF;
     private Integer numeroRG;
     private String nome;

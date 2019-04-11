@@ -21,9 +21,6 @@ import br.UFSC.INE5608.projetoDiaristas.Telas.TelaPrincipalDiarista;
 public class ControladorPrincipal {
     private static ControladorPrincipal instancia;
     
-    
-    
-    
     public static ControladorPrincipal getInstance() {
         if(instancia == null){
             instancia = new ControladorPrincipal();
@@ -47,7 +44,7 @@ public class ControladorPrincipal {
     }
     
     public void abreTelaInicial (){
-       TelaInicial.getInstance().setVisible(true);
+        TelaInicial.getInstance().setVisible(true);
     }
     
     public void abreTelaLogin (){

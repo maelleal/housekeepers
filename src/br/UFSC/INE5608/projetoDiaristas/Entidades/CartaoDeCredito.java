@@ -1,4 +1,7 @@
 package br.UFSC.INE5608.projetoDiaristas.Entidades;
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +13,7 @@ package br.UFSC.INE5608.projetoDiaristas.Entidades;
  *
  * @author Ismael
  */
-public class CartaoDeCredito {
+public class CartaoDeCredito implements Serializable{
     private String nomeCartao;
     private String numeroCartao;
     private String validade;
