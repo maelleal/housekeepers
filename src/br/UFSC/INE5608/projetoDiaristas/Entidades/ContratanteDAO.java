@@ -21,7 +21,7 @@ import java.util.HashMap;
  */
 public class ContratanteDAO implements Serializable {
     private static ContratanteDAO instancia;
-    private HashMap<Integer, Contratante> cacheContratantes = new HashMap<>();
+    private HashMap<Long, Contratante> cacheContratantes = new HashMap<>();
     private final String arquivoContratantes = "Contratantes.dat";
     
     private ContratanteDAO (){
@@ -68,7 +68,7 @@ public class ContratanteDAO implements Serializable {
             FileInputStream fin = new FileInputStream(arquivoContratantes);
             ObjectInputStream oi = new ObjectInputStream(fin);
         
-            this.cacheContratantes = (HashMap<Integer, Contratante>) oi.readObject();
+            this.cacheContratantes = (HashMap<Long, Contratante>) oi.readObject();
             
             oi.close();
             fin.close();

@@ -18,9 +18,9 @@ public class CartaoDeCredito implements Serializable{
     private String numeroCartao;
     private String validade;
     private String codigoCVV;
-    private Integer cpfProprietario;
+    private Long cpfProprietario;
 
-    public CartaoDeCredito(String nomeCartao, String numeroCartao, String validade, String codigoCVV, Integer cpfProprietario) {
+    public CartaoDeCredito(String nomeCartao, String numeroCartao, String validade, String codigoCVV, Long cpfProprietario) {
         this.nomeCartao = nomeCartao;
         this.numeroCartao = numeroCartao;
         this.validade = validade;
@@ -60,11 +60,11 @@ public class CartaoDeCredito implements Serializable{
         this.codigoCVV = codigoCVV;
     }
 
-    public Integer getCpfProprietario() {
+    public Long getCpfProprietario() {
         return cpfProprietario;
     }
 
-    public void setCpfProprietario(Integer cpfProprietario) {
+    public void setCpfProprietario(Long cpfProprietario) {
         this.cpfProprietario = cpfProprietario;
     }
     

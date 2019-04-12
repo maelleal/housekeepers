@@ -7,6 +7,7 @@ package br.UFSC.INE5608.projetoDiaristas.Telas;
 
 import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorCartaoCredito;
 import com.sun.xml.internal.ws.util.StringUtils;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,45 +38,25 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        campoNumeroCartao = new javax.swing.JTextField();
         txtNumeroCartao = new javax.swing.JLabel();
         txtNomeCartao = new javax.swing.JLabel();
-        campoNomeCartao = new javax.swing.JTextField();
         txtValidade = new javax.swing.JLabel();
-        campoValidade = new javax.swing.JTextField();
-        campoCVV = new javax.swing.JTextField();
         txtCVV = new javax.swing.JLabel();
         botaoCadastrar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+        campoNumeroCartao = new javax.swing.JFormattedTextField();
+        campoValidade = new javax.swing.JFormattedTextField();
+        campoCVV = new javax.swing.JFormattedTextField();
+        campoNomeCartao = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        campoNumeroCartao.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        campoNumeroCartao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoNumeroCartao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNumeroCartaoActionPerformed(evt);
-            }
-        });
 
         txtNumeroCartao.setText("Numero do cartão de crédito");
 
         txtNomeCartao.setText("Nome impresso no cartão");
 
-        campoNomeCartao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeCartaoActionPerformed(evt);
-            }
-        });
-
         txtValidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtValidade.setText("Validade");
-
-        campoValidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoValidadeActionPerformed(evt);
-            }
-        });
 
         txtCVV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtCVV.setText("CVV");
@@ -99,6 +80,32 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
             }
         });
 
+        try {
+            campoNumeroCartao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### #### ####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoNumeroCartao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoNumeroCartao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        try {
+            campoValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoValidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoValidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoValidadeActionPerformed(evt);
+            }
+        });
+
+        try {
+            campoCVV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,52 +115,48 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNomeCartao)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNomeCartao)
-                                    .addComponent(txtNumeroCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(campoValidade)
-                                            .addComponent(txtValidade, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                                        .addGap(43, 43, 43)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(campoCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(campoCVV, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(txtCVV, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                                .addGap(66, 66, 66)
+                                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(campoNomeCartao, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoNumeroCartao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
-                        .addContainerGap(105, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoNomeCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumeroCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoNumeroCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(44, 44, 44)
                 .addComponent(txtNumeroCartao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNumeroCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNumeroCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtNomeCartao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNomeCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNomeCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtValidade)
                             .addComponent(txtCVV))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(46, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,44 +169,47 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNumeroCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNumeroCartaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNumeroCartaoActionPerformed
-
-    private void campoValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoValidadeActionPerformed
-
-    private void campoNomeCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeCartaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeCartaoActionPerformed
-
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         ControladorCartaoCredito.getInstance().abreTelaCadastroContratante();
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        String numeroCartao = campoNumeroCartao.getText();   
+        System.out.println(campoNumeroCartao.getText());
+        String numeroCartao = campoNumeroCartao.getText().replaceAll(" ", "");  
+        System.out.println(numeroCartao);
         String nomeCartao = campoNomeCartao.getText();
-        String validade = campoValidade.getText(); 
+        String validade = campoValidade.getText().replaceAll("\\.|-/", ""); 
         String cvv = campoCVV.getText();
+        if(numeroCartao.isEmpty()){
+            
+        }
+        
+        
         
         if(!cvv.isEmpty() && !nomeCartao.isEmpty() && !numeroCartao.isEmpty() && !validade.isEmpty()){
             ControladorCartaoCredito.getInstance().setDadosCartao(numeroCartao, nomeCartao, validade, cvv);
+            JOptionPane.showMessageDialog(null, "Cartão cadastrado", "Cartao cadastrado", JOptionPane.DEFAULT_OPTION);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha os campos corretamente", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
         }
-        dispose();
+        
     }//GEN-LAST:event_botaoCadastrarActionPerformed
+
+    private void campoValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoValidadeActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JTextField campoCVV;
-    private javax.swing.JTextField campoNomeCartao;
-    private javax.swing.JTextField campoNumeroCartao;
-    private javax.swing.JTextField campoValidade;
+    private javax.swing.JFormattedTextField campoCVV;
+    private javax.swing.JFormattedTextField campoNomeCartao;
+    private javax.swing.JFormattedTextField campoNumeroCartao;
+    private javax.swing.JFormattedTextField campoValidade;
     private javax.swing.JLabel txtCVV;
     private javax.swing.JLabel txtNomeCartao;
     private javax.swing.JLabel txtNumeroCartao;

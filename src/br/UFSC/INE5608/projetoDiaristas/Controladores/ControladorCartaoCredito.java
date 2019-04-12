@@ -82,9 +82,10 @@ public class ControladorCartaoCredito {
         this.numeroCartao = nome;
         this.dataValidade = val;
         this.codigoCvv = CodigoCvv;
+        ControladorContratante.getInstance().cartaoCadastrado();
     }
     
-    public CartaoDeCredito cadastraCartao(Integer cpfProprietario){
+    public CartaoDeCredito cadastraCartao(Long cpfProprietario){
         
         CartaoDeCredito cartaoDeCredito = new CartaoDeCredito(nomeCartao, numeroCartao, dataValidade, 
                 codigoCvv, cpfProprietario);

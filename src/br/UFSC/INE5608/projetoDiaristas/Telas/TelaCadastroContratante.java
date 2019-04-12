@@ -6,12 +6,19 @@
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
 import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorContratante;
+import com.sun.xml.internal.ws.util.StringUtils;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ismael
  */
 public class TelaCadastroContratante extends javax.swing.JFrame {
+    Long cpf;
+    Long rg; 
+    String cpfTemp;
+    String rgTemp;
+    
     private static TelaCadastroContratante instancia;
     public static TelaCadastroContratante getInstance() {
         if(instancia == null){
@@ -323,34 +330,27 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
 
     private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
         //colocar codigo para cadastrar usuário
-        
-        String cpfTemp = campoCPF.getText();
-        cpfTemp = cpfTemp.replace( " " , ""); //tira espaço em branco
-        cpfTemp = cpfTemp.replace( "." , ""); //tira ponto
-        cpfTemp = cpfTemp.replace( "/" , ""); //tira barra
-        cpfTemp = cpfTemp.replace( "-" , ""); //tira hífen
-        
-        System.out.println(campoCPF.getText());
-        System.out.println(cpfTemp);
-        Integer cpf = Integer.parseInt(cpfTemp);
-        System.out.println(cpf);
-        Integer rg = Integer.parseInt(campoRG.getText());       
+        if(verificaDados()){    
+           Long cpf = Long.parseLong(cpfTemp);
+           Long rg = Long.parseLong(rgTemp); 
+              
         //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());   
                  
         ControladorContratante.getInstance().cadastrarContratante(
             cpf,
             rg, 
-            campoNome.getText(), 
-            campoEndereco.getText(),
-            campoObservacoes.getText(), 
-            2,
-            //numComodos, 
+            campoNome.getText().trim(), 
+            campoEndereco.getText().trim(),
+            campoObservacoes.getText().trim(), 
+            2,//numComodos, 
             checkQuintal.isSelected(),
             checkSacada.isSelected(), 
             checkAnivalEstimacao.isSelected(), 
             jCheckBox4.isSelected()  
         
-        );
+        ); 
+        }
+        
         
         
     }//GEN-LAST:event_botaoCadastraUsuarioActionPerformed
@@ -358,7 +358,42 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     private void botaoCadastraCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraCartaoActionPerformed
         ControladorContratante.getInstance().abreTelaCartao();
     }//GEN-LAST:event_botaoCadastraCartaoActionPerformed
-
+    
+    public void cartaoCadastrado(){
+        txtCartaoObrigatorio.setText("Cartão cadastrado");
+    }
+    
+    private boolean verificaDados(){
+        String cpfTemp = campoCPF.getText().trim().replaceAll("\\.|-", "");
+        String rgTemp = campoRG.getText().trim();
+        
+        if(cpfTemp.isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar CPF", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if(!ControladorContratante.getInstance().validaCPF(cpfTemp)){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar CPF válido", "CPF inválido", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        
+        if(rgTemp.isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar RG", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        if(campoNome.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu nome", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        if(campoEndereco.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu endereço", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        if(!txtCartaoObrigatorio.getText().equals("Cartão cadastrado")){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um cartão", "Cartão Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
+        
+        return true;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,8 +12,8 @@ import java.io.Serializable;
  * @author Ismael
  */
 public class Contratante implements Serializable{
-    private Integer numeroCPF;
-    private Integer numeroRG;
+    private Long numeroCPF;
+    private Long numeroRG;
     private String nome;
     private String endereco;
     private CartaoDeCredito cartaoDeCredito;
@@ -24,7 +24,7 @@ public class Contratante implements Serializable{
     private boolean possuiAnimal;
     private boolean outraCoisa;
 
-    public Contratante(Integer numeroCPF, Integer numeroRG, String nome, 
+    public Contratante(Long numeroCPF, Long numeroRG, String nome, 
             String endereco, int numeroComodos, CartaoDeCredito cartaoDeCredito) {
         this.numeroCPF = numeroCPF;
         this.numeroRG = numeroRG;
@@ -35,19 +35,19 @@ public class Contratante implements Serializable{
     }
 
     
-    public Integer getNumeroCPF() {
+    public Long getNumeroCPF() {
         return numeroCPF;
     }
 
-    public void setNumeroCPF(Integer numeroCPF) {
+    public void setNumeroCPF(Long numeroCPF) {
         this.numeroCPF = numeroCPF;
     }
 
-    public Integer getNumeroRG() {
+    public Long getNumeroRG() {
         return numeroRG;
     }
 
-    public void setNumeroRG(Integer numeroRG) {
+    public void setNumeroRG(Long numeroRG) {
         this.numeroRG = numeroRG;
     }
 

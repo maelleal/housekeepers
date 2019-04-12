@@ -41,7 +41,7 @@ public class ControladorContratante {
     
     
     public void cadastrarContratante(
-            Integer numeroCPF, Integer numeroRG, String nome, String endereco, 
+            Long numeroCPF, Long numeroRG, String nome, String endereco, 
                 String observacoes, int numeroComodos, boolean possuiQuintal, boolean 
                     possuiSacada, boolean possuiAnimal, boolean outraCoisa){
         
@@ -59,5 +59,14 @@ public class ControladorContratante {
     
     public void buscaContratantePeloCPF (Integer cpf){
         
+    }
+    
+    public boolean validaCPF (String cpf){
+        return ValidaCPF.getInstance().isCPF(cpf);
+    }
+
+    void cartaoCadastrado() {
+        TelaCadastroContratante.getInstance().cartaoCadastrado();
+    
     }
 }
