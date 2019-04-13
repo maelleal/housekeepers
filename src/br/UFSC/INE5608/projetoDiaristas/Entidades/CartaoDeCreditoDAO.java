@@ -28,7 +28,7 @@ public class CartaoDeCreditoDAO implements Serializable{
         load();
     }
     
-    public CartaoDeCredito get(Integer cpfPropiretario){
+    public CartaoDeCredito get(Long cpfPropiretario){
         return cacheCartaoDeCredito.get(cpfPropiretario);
     }
     
@@ -37,7 +37,7 @@ public class CartaoDeCreditoDAO implements Serializable{
         this.persist();
     }
     
-    public void remove(Integer cpfPropiretario){
+    public void remove(Long cpfPropiretario){
 	cacheCartaoDeCredito.remove(cpfPropiretario);
 	persist();
     }

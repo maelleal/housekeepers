@@ -101,4 +101,14 @@ public class ControladorCartaoCredito {
         this.dataValidade = "";
         this.codigoCvv = "";
     }
+    
+    private CartaoDeCredito buscaCartaoPeloCPF (Long cpfProprietario){
+        try {
+            return CartaoDeCreditoDAO.getInstancia().get(cpfProprietario);
+        } catch (Exception e) {
+            //tirar daqui
+            System.out.println("Cartão inexistente");
+        }
+        return null;
+    }
 }

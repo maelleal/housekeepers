@@ -97,6 +97,8 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtHasCartaCadastrado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtHasCartaCadastrado.setText("Sem cartão cadastrado");
 
+        campoObservacoes.setAutoscrolls(false);
+
         txtObservacoes.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtObservacoes.setText("Observações");
 
@@ -331,8 +333,10 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
         //colocar codigo para cadastrar usuário
         if(verificaDados()){    
-           Long cpf = Long.parseLong(cpfTemp);
-           Long rg = Long.parseLong(rgTemp); 
+            cpf = Long.parseLong(cpfTemp);
+                System.out.println(cpf);
+            rg = Long.parseLong(rgTemp); 
+                System.out.println(rg);
               
         //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());   
                  
@@ -360,13 +364,17 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCadastraCartaoActionPerformed
     
     public void cartaoCadastrado(){
-        txtCartaoObrigatorio.setText("Cartão cadastrado");
+        txtHasCartaCadastrado.setText("Cartão cadastrado");
+        botaoCadastraCartao.setText("Atualizar cartão");
     }
     
     private boolean verificaDados(){
-        String cpfTemp = campoCPF.getText().trim().replaceAll("\\.|-", "");
-        String rgTemp = campoRG.getText().trim();
-        
+        cpfTemp = campoCPF.getText().trim().replaceAll("\\.|-", "");
+        rgTemp = campoRG.getText().trim();
+        if(campoNome.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu nome", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        }
         if(cpfTemp.isEmpty()){
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar CPF", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
@@ -379,15 +387,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar RG", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
         }
-        if(campoNome.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu nome", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
-            return false;
-        }
         if(campoEndereco.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu endereço", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
         }
-        if(!txtCartaoObrigatorio.getText().equals("Cartão cadastrado")){
+        if(!txtHasCartaCadastrado.getText().equals("Cartão cadastrado")){
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um cartão", "Cartão Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
         }

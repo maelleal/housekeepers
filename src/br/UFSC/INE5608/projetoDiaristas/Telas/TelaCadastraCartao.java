@@ -14,13 +14,16 @@ import javax.swing.JOptionPane;
  * @author Ismael
  */
 public class TelaCadastraCartao extends javax.swing.JFrame {
+
     private static TelaCadastraCartao instancia;
+
     public static TelaCadastraCartao getInstance() {
-        if(instancia == null){
+        if (instancia == null) {
             instancia = new TelaCadastraCartao();
         }
         return instancia;
     }
+
     /**
      * Creates new form TelaCadastraCartão
      */
@@ -105,6 +108,9 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        campoCVV.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        campoNomeCartao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,33 +181,49 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
+
         System.out.println(campoNumeroCartao.getText());
-        String numeroCartao = campoNumeroCartao.getText().replaceAll(" ", "");  
+        String numeroCartao = campoNumeroCartao.getText().replaceAll(" ", "");
+        String nomeCartao = campoNomeCartao.getText().trim();
+        String validade = campoValidade.getText().replaceAll("/", "");
+        validade = validade.replaceAll(" ", "");
+        String cvv = campoCVV.getText().replaceAll(" ", "");
         System.out.println(numeroCartao);
-        String nomeCartao = campoNomeCartao.getText();
-        String validade = campoValidade.getText().replaceAll("\\.|-/", ""); 
-        String cvv = campoCVV.getText();
-        if(numeroCartao.isEmpty()){
-            
-        }
-        
-        
-        
-        if(!cvv.isEmpty() && !nomeCartao.isEmpty() && !numeroCartao.isEmpty() && !validade.isEmpty()){
-            ControladorCartaoCredito.getInstance().setDadosCartao(numeroCartao, nomeCartao, validade, cvv);
-            JOptionPane.showMessageDialog(null, "Cartão cadastrado", "Cartao cadastrado", JOptionPane.DEFAULT_OPTION);
-            dispose();
+
+        if (numeroCartao.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha os números do cartão", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+        } else if (nomeCartao.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o nome impresso no cartão", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+        } else if (nomeCartao.length() < 3) {
+            JOptionPane.showMessageDialog(null, "Preencha o nome válido, com mais que 3 caracteres", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+        } else if (validade.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha a data de validade", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+        } else if (cvv.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha o código CVV", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+        } else if (Character.getNumericValue(validade.charAt(0)) > 1) {
+            JOptionPane.showMessageDialog(null, "Data de validade inválida", "Cartao inválido", JOptionPane.DEFAULT_OPTION);
+        } else if (Character.getNumericValue(validade.charAt(0)) == 1 && Character.getNumericValue(validade.charAt(1)) > 2) {
+            JOptionPane.showMessageDialog(null, "Data de validade inválida", "Cartao inválido", JOptionPane.DEFAULT_OPTION);
+        } else if (Character.getNumericValue(validade.charAt(2)) <= 1 && Character.getNumericValue(validade.charAt(3)) <= 9) {
+            JOptionPane.showMessageDialog(null, "Data de validade inválida", "Cartao inválido", JOptionPane.DEFAULT_OPTION);
         } else {
-            JOptionPane.showMessageDialog(null, "Preencha os campos corretamente", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+
+            try {
+                ControladorCartaoCredito.getInstance().setDadosCartao(numeroCartao, nomeCartao, validade, cvv);
+                dispose();
+                JOptionPane.showMessageDialog(null, "Cartão cadastrado", "Cartao cadastrado", JOptionPane.DEFAULT_OPTION);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Preencha os campos corretamente", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
+            }
         }
-        
+
     }//GEN-LAST:event_botaoCadastrarActionPerformed
+
 
     private void campoValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoValidadeActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;

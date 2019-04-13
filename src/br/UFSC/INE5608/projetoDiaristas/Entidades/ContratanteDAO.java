@@ -28,7 +28,7 @@ public class ContratanteDAO implements Serializable {
         load();
     }
     
-    public Contratante get(Integer numeroContratante){
+    public Contratante get(Long numeroContratante){
         return cacheContratantes.get(numeroContratante);
     }
     
