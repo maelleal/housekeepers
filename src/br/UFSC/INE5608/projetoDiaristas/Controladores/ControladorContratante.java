@@ -8,6 +8,7 @@ package br.UFSC.INE5608.projetoDiaristas.Controladores;
 import br.UFSC.INE5608.projetoDiaristas.Entidades.Contratante;
 import br.UFSC.INE5608.projetoDiaristas.Entidades.ContratanteDAO;
 import br.UFSC.INE5608.projetoDiaristas.Telas.TelaCadastroContratante;
+import br.UFSC.INE5608.projetoDiaristas.Telas.TelaPrincipalContratante;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,17 +42,17 @@ public class ControladorContratante {
         TelaCadastroContratante.getInstance().setVisible(true);
     }
 
-    public void cadastrarContratante(
+    public void cadastrarContratante(String senha,
             Long numeroCPF, Long numeroRG, String nome, String endereco,
                 String observacoes, int numeroComodos, boolean possuiQuintal, boolean possuiSacada, 
-                    boolean possuiAnimal, boolean outraCoisa) {
+                    boolean possuiAnimal, boolean outraCoisa, String celular, String email) {
         
         if (verificaCadastro(numeroCPF)) {
             JOptionPane.showMessageDialog(null, "Usuário já cadastrado", "Cadastro de usuário", JOptionPane.DEFAULT_OPTION);
         } else {
 
-            Contratante contratante = new Contratante(numeroCPF, numeroRG, nome, endereco, numeroComodos,
-                    ControladorCartaoCredito.getInstance().cadastraCartao(numeroCPF));
+            Contratante contratante = new Contratante(senha, numeroCPF, numeroRG, nome, endereco, numeroComodos,
+                    ControladorCartaoCredito.getInstance().cadastraCartao(numeroCPF), celular, email);
 
             contratante.setObservacoes(observacoes);
             contratante.setPossuiQuintal(possuiQuintal);
@@ -62,6 +63,7 @@ public class ControladorContratante {
             ContratanteDAO.getInstancia().put(contratante);
             ControladorPrincipal.getInstance().abreTelaInicial();
             TelaCadastroContratante.getInstance().dispose();
+            TelaCadastroContratante.getInstance().limpaDados();
         }
     }
 
@@ -79,7 +81,7 @@ public class ControladorContratante {
         return true;
     }
     
-    private boolean verificaCadastro(Long cpf){
+    public boolean verificaCadastro(Long cpf){
         try {
             if(ContratanteDAO.getInstancia().get(cpf) != null){
             return true;
@@ -87,7 +89,19 @@ public class ControladorContratante {
         } catch (Exception e) {
             
         }
-        
         return false;
     }
+    public boolean verificaLogin (Long cpf, String senha){
+        if (ContratanteDAO.getInstancia().get(cpf).getSenha().equals(senha)) {
+            return true;
+        }
+        return false;
+    }
+
+    void abreTelaPrincipalContratante(Long cpf) {
+        //TelaPrincipalContratante.getInstance().setDados();
+        TelaPrincipalContratante.getInstance().setVisible(true);
+    }
+
+    
 }

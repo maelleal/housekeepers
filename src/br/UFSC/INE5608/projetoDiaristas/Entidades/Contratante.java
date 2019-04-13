@@ -16,7 +16,10 @@ public class Contratante implements Serializable{
     private Long numeroRG;
     private String nome;
     private String endereco;
+    private String senha;
     private CartaoDeCredito cartaoDeCredito;
+    private String email;
+    private String numeroCelular;
     private String observacoes;
     private int numeroComodos;
     private boolean possuiQuintal;
@@ -24,14 +27,18 @@ public class Contratante implements Serializable{
     private boolean possuiAnimal;
     private boolean outraCoisa;
 
-    public Contratante(Long numeroCPF, Long numeroRG, String nome, 
-            String endereco, int numeroComodos, CartaoDeCredito cartaoDeCredito) {
+    public Contratante(String senha, Long numeroCPF, Long numeroRG, String nome, 
+            String endereco, int numeroComodos, CartaoDeCredito cartaoDeCredito,
+                String numeroCelular, String email) {
+        this.senha = senha;
         this.numeroCPF = numeroCPF;
         this.numeroRG = numeroRG;
         this.nome = nome;
         this.endereco = endereco;
         this.numeroComodos = numeroComodos;
         this.cartaoDeCredito = cartaoDeCredito;
+        this.email = email;
+        this.numeroCelular = numeroCelular;
     }
 
     
@@ -122,8 +129,24 @@ public class Contratante implements Serializable{
     public void setOutraCoisa(boolean outraCoisa) {
         this.outraCoisa = outraCoisa;
     }
-       
-    public Contratante bustaContratantePeloCPF (Integer cpf){
-        return null;
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNumeroCelular() {
+        return numeroCelular;
+    }
+
+    public void setNumeroCelular(String numeroCelular) {
+        this.numeroCelular = numeroCelular;
     }
 }

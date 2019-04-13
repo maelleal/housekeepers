@@ -13,6 +13,7 @@ import br.UFSC.INE5608.projetoDiaristas.Telas.TelaInicial;
 import br.UFSC.INE5608.projetoDiaristas.Telas.TelaLogin;
 import br.UFSC.INE5608.projetoDiaristas.Telas.TelaPrincipalContratante;
 import br.UFSC.INE5608.projetoDiaristas.Telas.TelaPrincipalDiarista;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,22 +28,15 @@ public class ControladorPrincipal {
         }
         return instancia;
     }
-    public void abreTelaCadastraCartao(){
-       TelaCadastraCartao.getInstance().setVisible(true);
-    }
-    
-    public void abreTelaCadastroContaBancaria(){
-        TelaCadastroContaBancaria.getInstance().setVisible(true);
-    }
     
     public void abreTelaCadastroContratante (){
-        TelaCadastroContratante.getInstance().setVisible(true);
+        ControladorContratante.getInstance().abreTelaCadastroContratante();
     }
     
     public void abreTelaCadastroDiarista (){
-        TelaCadastroDiarista.getInstance().setVisible(true);
+        ControladorDiarista.getInstance().abreTelaCadastroDiarista();
     }
-    
+      
     public void abreTelaInicial (){
         TelaInicial.getInstance().setVisible(true);
     }
@@ -51,12 +45,48 @@ public class ControladorPrincipal {
         TelaLogin.getInstance().setVisible(true);
     }
     
-    public void abreTelaPrincipalContratante (){
-        TelaPrincipalContratante.getInstance().setVisible(true);
+    public int validaUsuario (Long cpf){
+        if(ControladorContratante.getInstance().verificaCadastro(cpf)){
+            System.out.println("Entrando na opcao 2");
+            return 2;
+        } else if(ControladorDiarista.getInstance().verificaCadastro(cpf)){
+            return 3;
+        } else {  
+            return -1;
+        }
+    }
+    public boolean validaSenhaDiarista(Long cpf, String senha){
+        return ControladorDiarista.getInstance().verificaLogin(cpf, senha);
+    }
+    public boolean validaSenhaContratante(Long cpf, String senha){
+        return ControladorContratante.getInstance().verificaLogin(cpf, senha);
     }
     
-    public void abreTelaPrincipalDiarista (){
-        TelaPrincipalDiarista.getInstance().setVisible(true);
+    public void realizaLogin(Long cpf, String senha){
+        switch (validaUsuario(cpf)) {
+            case 2:
+                if(validaSenhaContratante(cpf, senha)){
+                    TelaLogin.getInstance().dispose();
+                    ControladorContratante.getInstance().abreTelaPrincipalContratante(cpf);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha não confere", "Senha não confere", JOptionPane.DEFAULT_OPTION);
+                }  
+                break;
+            case 3:
+                if(validaSenhaDiarista(cpf, senha)){
+                    ControladorDiarista.getInstance().abreTelaPrincipalDiarista(cpf);
+                    TelaInicial.getInstance().dispose();
+                }   else {
+                    JOptionPane.showMessageDialog(null, "Senha não confere", "Senha não confere", JOptionPane.DEFAULT_OPTION);
+                }   
+                break;
+            case -1:
+                JOptionPane.showMessageDialog(null, "Usuário não cadastrado", "Cadastro de usuário", JOptionPane.DEFAULT_OPTION);
+                break;
+            default:
+                break;
+        }
     }
+    
     
 }

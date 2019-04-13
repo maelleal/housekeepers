@@ -5,8 +5,10 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
+import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorPrincipal;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -15,8 +17,6 @@ import javax.swing.text.MaskFormatter;
  */
 public class TelaLogin extends javax.swing.JFrame {
     private static TelaLogin instancia;
-    private String usuarioLogin;
-    private String senhaLogin;
     
     public static TelaLogin getInstance() {
         if(instancia == null){
@@ -52,6 +52,7 @@ public class TelaLogin extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         campoUsuario = new javax.swing.JFormattedTextField();
         campoSenha = new javax.swing.JPasswordField();
+        botaoResetarSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,16 +67,27 @@ public class TelaLogin extends javax.swing.JFrame {
         txtCabecalho.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtCabecalho.setText("Entre com os seus dados para conectar");
 
+        txtRecomendaCPF.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtRecomendaCPF.setText("(CPF)");
 
         botaoConectar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoConectar.setText("Conectar");
         botaoConectar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConectarActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCancelar.setForeground(new java.awt.Color(153, 0, 51));
         botaoCancelar.setText("Cancelar");
         botaoCancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         try {
             campoUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -83,17 +95,38 @@ public class TelaLogin extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         campoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoUsuarioActionPerformed(evt);
             }
         });
 
+        campoSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         campoSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoSenha.setText("jPasswordField1");
+        campoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusGained(evt);
+            }
+        });
         campoSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 campoSenhaMouseClicked(evt);
+            }
+        });
+        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSenhaActionPerformed(evt);
+            }
+        });
+
+        botaoResetarSenha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botaoResetarSenha.setText("Resetar Senha");
+        botaoResetarSenha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botaoResetarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoResetarSenhaActionPerformed(evt);
             }
         });
 
@@ -101,46 +134,46 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botaoConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botaoResetarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(botaoConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRecomendaCPF))
                     .addComponent(campoSenha)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(campoUsuario)
-                        .addComponent(txtCabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSenha)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtUsuario)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtRecomendaCPF))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                    .addComponent(campoUsuario)
+                    .addComponent(txtCabecalho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(txtCabecalho)
-                .addGap(54, 54, 54)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuario)
-                    .addComponent(txtRecomendaCPF))
+                    .addComponent(txtRecomendaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoConectar, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(botaoResetarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,24 +191,49 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
-        usuarioLogin = campoUsuario.getText();
-        usuarioLogin = usuarioLogin.replace( " " , ""); //tira espaço em branco
-        usuarioLogin = usuarioLogin.replace( "." , ""); //tira ponto
-        usuarioLogin = usuarioLogin.replace( "/" , ""); //tira barra
-        usuarioLogin = usuarioLogin.replace( "-" , ""); //tira hífen
-        
-        
+               
     }//GEN-LAST:event_campoUsuarioActionPerformed
 
     private void campoSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoSenhaMouseClicked
         campoSenha.setText("");
     }//GEN-LAST:event_campoSenhaMouseClicked
 
+    private void botaoConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConectarActionPerformed
+        String cpfTemp = campoUsuario.getText().trim().replaceAll("\\.|-", "");
+        String senhaTemp = new String(campoSenha.getPassword());
+        if(cpfTemp.isEmpty() || senhaTemp.length() != 8){
+            JOptionPane.showMessageDialog(null, "É preciso informar CPF e uma senha para logar\n A senha precisa ter 8 caracteres com letras e números", "Insira os dados", JOptionPane.DEFAULT_OPTION);
+        } else {
+            Long cpf = Long.parseLong(cpfTemp);
+            
+            ControladorPrincipal.getInstance().realizaLogin(cpf, senhaTemp);   
+        }
+         
+    }//GEN-LAST:event_botaoConectarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        ControladorPrincipal.getInstance().abreTelaInicial();
+        dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void botaoResetarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoResetarSenhaActionPerformed
+        JOptionPane.showMessageDialog(null, "A versão beta do sistema não comtempla essa funcionalidade", "Não descontar nota", JOptionPane.DEFAULT_OPTION);
+    }//GEN-LAST:event_botaoResetarSenhaActionPerformed
+
+    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSenhaActionPerformed
+
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
+        campoSenha.setText("");
+    }//GEN-LAST:event_campoSenhaFocusGained
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoConectar;
+    private javax.swing.JButton botaoResetarSenha;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JFormattedTextField campoUsuario;
     private javax.swing.JPanel jPanel1;

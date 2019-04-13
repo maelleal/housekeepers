@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ContratanteDAO implements Serializable {
     private static ContratanteDAO instancia;
     private HashMap<Long, Contratante> cacheContratantes = new HashMap<>();
-    private final String arquivoContratantes = "Contratantes.dat";
+    private final String arquivoContratantes = "Contratantes.txt";
     
     private ContratanteDAO (){
         load();

@@ -6,7 +6,6 @@
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
 import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorCartaoCredito;
-import com.sun.xml.internal.ws.util.StringUtils;
 import javax.swing.JOptionPane;
 
 /**
@@ -211,7 +210,7 @@ public class TelaCadastraCartao extends javax.swing.JFrame {
             try {
                 ControladorCartaoCredito.getInstance().setDadosCartao(numeroCartao, nomeCartao, validade, cvv);
                 dispose();
-                JOptionPane.showMessageDialog(null, "Cartão cadastrado", "Cartao cadastrado", JOptionPane.DEFAULT_OPTION);
+                JOptionPane.showMessageDialog(null, "Cartão cadastrado com sucesso", "Cartao cadastrado", JOptionPane.DEFAULT_OPTION);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Preencha os campos corretamente", "Dados inválidos", JOptionPane.DEFAULT_OPTION);
             }

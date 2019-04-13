@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class ContaBancariaDAO implements Serializable {
     private static ContaBancariaDAO instancia;
     private HashMap<Integer, ContaBancaria> cacheContaBancaria = new HashMap<>();
-    private final String arquivoContaBancaria = "ContaBancaria.dat";
+    private final String arquivoContaBancaria = "ContaBancaria.txt";
     
     private ContaBancariaDAO (){
         load();

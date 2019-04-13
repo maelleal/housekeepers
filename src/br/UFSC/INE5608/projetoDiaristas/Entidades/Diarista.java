@@ -13,17 +13,23 @@ import java.util.ArrayList;
  * @author Ismael
  */
 public class Diarista implements Serializable {
-    private Integer numeroCPF;
-    private Integer numeroRG;
+    private String senha;
+    private Long numeroCPF;
+    private Long numeroRG;
     private String nome;
     private String endereco;
     private ContaBancaria contaBancaria;
+    private String email;
+    private String numeroCelular;
     private String observacoes;
     private int valorDiaria;
     private boolean receberDinheiro;
     private ArrayList<String> diasDaSemana;
 
-    public Diarista(Integer numeroCPF, Integer numeroRG, String nome, String endereco, ContaBancaria contaBancaria, int valorDiaria, ArrayList<String> diasDaSemana) {
+    public Diarista(String senha, Long numeroCPF, Long numeroRG, String nome, String endereco, 
+            ContaBancaria contaBancaria, int valorDiaria, ArrayList<String> diasDaSemana, 
+                String numeroCelular, String email) {
+        this.senha = senha;
         this.numeroCPF = numeroCPF;
         this.numeroRG = numeroRG;
         this.nome = nome;
@@ -31,21 +37,31 @@ public class Diarista implements Serializable {
         this.contaBancaria = contaBancaria;
         this.valorDiaria = valorDiaria;
         this.diasDaSemana = diasDaSemana;
+        this.email = email;
+        this.numeroCelular = numeroCelular;
     }
 
-    public Integer getNumeroCPF() {
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public Long getNumeroCPF() {
         return numeroCPF;
     }
 
-    public void setNumeroCPF(Integer numeroCPF) {
+    public void setNumeroCPF(Long numeroCPF) {
         this.numeroCPF = numeroCPF;
     }
 
-    public Integer getNumeroRG() {
+    public Long getNumeroRG() {
         return numeroRG;
     }
 
-    public void setNumeroRG(Integer numeroRG) {
+    public void setNumeroRG(Long numeroRG) {
         this.numeroRG = numeroRG;
     }
 
@@ -104,9 +120,22 @@ public class Diarista implements Serializable {
     public void setDiasDaSemana(ArrayList<String> diasDaSemana) {
         this.diasDaSemana = diasDaSemana;
     }
-    
-    public Diarista bustaDiaristaPeloCPF (Integer cpf){
-        return null;
+
+    public String getEmail() {
+        return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNumeroCelular() {
+        return numeroCelular;
+    }
+
+    public void setNumeroCelular(String numeroCelular) {
+        this.numeroCelular = numeroCelular;
+    }
+    
     
 }

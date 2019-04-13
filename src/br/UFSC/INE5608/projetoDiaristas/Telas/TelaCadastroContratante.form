@@ -28,10 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="painelContratante" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="painelContratante" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -58,40 +55,55 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtObservacoes" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoObservacoes" alignment="0" min="-2" pref="636" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtRG" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCPF" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNome" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtHasCartaCadastrado" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="botaoCadastraCartao" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="campoNome" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="campoObservacoes" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtRG" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCPF" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtHasCartaCadastrado" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botaoCadastraCartao" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCartaoObrigatorio" alignment="0" min="-2" pref="374" max="-2" attributes="0"/>
-                              <Component id="campoEndereco" alignment="0" min="-2" pref="395" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="campoCPF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="campoRG" alignment="0" pref="137" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="painelDadosImovel" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="botaoCancela" min="-2" pref="162" max="-2" attributes="0"/>
+                              <Component id="campoEndereco" alignment="1" max="32767" attributes="0"/>
+                              <Component id="campoCPF" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtObservacoes" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="campoEmail" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <Component id="txtEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="botaoCadastraUsuario" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtCelular" min="-2" max="-2" attributes="0"/>
+                                      <Component id="campoCelular" min="-2" pref="180" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="campoNome" alignment="0" max="32767" attributes="0"/>
+                              <Component id="campoRG" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="63" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="painelDadosImovel" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="botaoCancela" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="botaoCadastraUsuario" min="-2" pref="163" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="campoSenha" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="campoRepeteSenha" min="-2" pref="209" max="-2" attributes="0"/>
+                                      <Component id="txtRepitaSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtDigiteSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -121,23 +133,50 @@
                       </Group>
                       <Component id="painelDadosImovel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtObservacoes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCelular" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="campoEmail" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="campoCelular" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="txtDigiteSenha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="campoSenha" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtObservacoes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtRepitaSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="campoObservacoes" min="-2" pref="81" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtHasCartaCadastrado" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="campoObservacoes" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="campoRepeteSenha" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtHasCartaCadastrado" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botaoCadastraUsuario" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="botaoCadastraCartao" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCartaoObrigatorio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
                       </Group>
                       <Component id="botaoCancela" alignment="0" max="32767" attributes="0"/>
-                      <Component id="botaoCadastraUsuario" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="txtCartaoObrigatorio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtCamposObrigatorios" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -216,8 +255,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="campoEndereco">
         </Component>
-        <Component class="javax.swing.JTextField" name="campoRG">
-        </Component>
         <Component class="javax.swing.JTextField" name="campoNome">
         </Component>
         <Container class="javax.swing.JPanel" name="painelDadosImovel">
@@ -242,7 +279,7 @@
                           <Component id="checkQuintal" min="-2" max="-2" attributes="0"/>
                           <Component id="checkSacada" min="-2" max="-2" attributes="0"/>
                           <Component id="checkAnivalEstimacao" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkOutraCoisa" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="121" max="32767" attributes="0"/>
                   </Group>
@@ -270,8 +307,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="checkAnivalEstimacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="checkOutraCoisa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -308,9 +345,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Possui sacada"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkSacadaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="checkQuintal">
               <Properties>
@@ -328,12 +362,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkAnivalEstimacaoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+            <Component class="javax.swing.JCheckBox" name="checkOutraCoisa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mais alguma coisa"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkOutraCoisaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -393,6 +427,82 @@
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="###.###.###-##" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtDigiteSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="13" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Digite uma senha: *"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtRepitaSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="13" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Repita a senha: *"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="campoSenha">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoSenhaFocusGained"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="campoRepeteSenha">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoRepeteSenhaFocusGained"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campoEmail">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="campoCelular">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="(##) #####-####" subtype="-1" type="5"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Texto"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCelularActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtEmail">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="13" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="E-mail *"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtCelular">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="13" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Celular *"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="campoRG">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="############" subtype="-1" type="0"/>
             </Property>
           </Properties>
         </Component>

@@ -21,14 +21,14 @@ import java.util.HashMap;
  */
 public class DiaristaDAO implements Serializable {
     private static DiaristaDAO instancia;
-    private HashMap<Integer, Diarista> cacheDiaristas = new HashMap<>();
-    private final String arquivoDiaristas = "Diarista.dat";
+    private HashMap<Long, Diarista> cacheDiaristas = new HashMap<>();
+    private final String arquivoDiaristas = "Diarista.txt";
     
     private DiaristaDAO (){
         load();
     }
     
-    public Diarista get(Integer numeroDiarista){
+    public Diarista get(Long numeroDiarista){
         return cacheDiaristas.get(numeroDiarista);
     }
     
@@ -37,7 +37,7 @@ public class DiaristaDAO implements Serializable {
         this.persist();
     }
     
-    public void remove(Integer numeroDiarista){
+    public void remove(Long numeroDiarista){
 	cacheDiaristas.remove(numeroDiarista);
 	persist();
     }
@@ -68,7 +68,7 @@ public class DiaristaDAO implements Serializable {
             FileInputStream fin = new FileInputStream(arquivoDiaristas);
             ObjectInputStream oi = new ObjectInputStream(fin);
         
-            this.cacheDiaristas = (HashMap<Integer, Diarista>) oi.readObject();
+            this.cacheDiaristas = (HashMap<Long, Diarista>) oi.readObject();
             
             oi.close();
             fin.close();

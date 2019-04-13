@@ -5,6 +5,8 @@
  */
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
+import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorContratante;
+
 /**
  *
  * @author Ismael
@@ -57,6 +59,11 @@ public class TelaPrincipalContratante extends javax.swing.JFrame {
         jButton4.setText("Relatorio de serviços mensal");
 
         jButton5.setText("Sair");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Excluir perfil");
 
@@ -99,6 +106,11 @@ public class TelaPrincipalContratante extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ControladorContratante.getInstance().abreTelaInicial();
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     
 

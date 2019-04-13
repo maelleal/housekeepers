@@ -6,7 +6,6 @@
 package br.UFSC.INE5608.projetoDiaristas.Telas;
 
 import br.UFSC.INE5608.projetoDiaristas.Controladores.ControladorContratante;
-import com.sun.xml.internal.ws.util.StringUtils;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,18 +13,22 @@ import javax.swing.JOptionPane;
  * @author Ismael
  */
 public class TelaCadastroContratante extends javax.swing.JFrame {
+
     Long cpf;
-    Long rg; 
+    Long rg;
     String cpfTemp;
     String rgTemp;
-    
+    String celTemp;
+
     private static TelaCadastroContratante instancia;
+
     public static TelaCadastroContratante getInstance() {
-        if(instancia == null){
+        if (instancia == null) {
             instancia = new TelaCadastroContratante();
         }
         return instancia;
     }
+
     /**
      * Creates new form TelaCadastroContratante
      */
@@ -53,7 +56,6 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         campoObservacoes = new javax.swing.JTextField();
         txtObservacoes = new javax.swing.JLabel();
         campoEndereco = new javax.swing.JTextField();
-        campoRG = new javax.swing.JTextField();
         campoNome = new javax.swing.JTextField();
         painelDadosImovel = new javax.swing.JPanel();
         txtNumeroComodos = new javax.swing.JLabel();
@@ -61,12 +63,21 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         checkSacada = new javax.swing.JCheckBox();
         checkQuintal = new javax.swing.JCheckBox();
         checkAnivalEstimacao = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        checkOutraCoisa = new javax.swing.JCheckBox();
         txtCartaoObrigatorio = new javax.swing.JLabel();
         botaoCadastraUsuario = new javax.swing.JButton();
         txtCamposObrigatorios = new javax.swing.JLabel();
         botaoCancela = new javax.swing.JButton();
         campoCPF = new javax.swing.JFormattedTextField();
+        txtDigiteSenha = new javax.swing.JLabel();
+        txtRepitaSenha = new javax.swing.JLabel();
+        campoSenha = new javax.swing.JPasswordField();
+        campoRepeteSenha = new javax.swing.JPasswordField();
+        campoEmail = new javax.swing.JTextField();
+        campoCelular = new javax.swing.JFormattedTextField();
+        txtEmail = new javax.swing.JLabel();
+        txtCelular = new javax.swing.JLabel();
+        campoRG = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,11 +126,6 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         });
 
         checkSacada.setText("Possui sacada");
-        checkSacada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSacadaActionPerformed(evt);
-            }
-        });
 
         checkQuintal.setText("Possui quintal / jardim");
         checkQuintal.addActionListener(new java.awt.event.ActionListener() {
@@ -135,10 +141,10 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox4.setText("Mais alguma coisa");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        checkOutraCoisa.setText("Mais alguma coisa");
+        checkOutraCoisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                checkOutraCoisaActionPerformed(evt);
             }
         });
 
@@ -152,7 +158,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                     .addComponent(checkQuintal)
                     .addComponent(checkSacada)
                     .addComponent(checkAnivalEstimacao)
-                    .addComponent(jCheckBox4))
+                    .addComponent(checkOutraCoisa))
                 .addContainerGap(121, Short.MAX_VALUE))
             .addGroup(painelDadosImovelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -175,8 +181,8 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(checkAnivalEstimacao)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox4)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(checkOutraCoisa)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         txtCartaoObrigatorio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -210,6 +216,51 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        txtDigiteSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtDigiteSenha.setText("Digite uma senha: *");
+
+        txtRepitaSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtRepitaSenha.setText("Repita a senha: *");
+
+        campoSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoSenha.setText("jPasswordField1");
+        campoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoSenhaFocusGained(evt);
+            }
+        });
+
+        campoRepeteSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoRepeteSenha.setText("jPasswordField1");
+        campoRepeteSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoRepeteSenhaFocusGained(evt);
+            }
+        });
+
+        campoEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        try {
+            campoCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoCelular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoCelular.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCelularActionPerformed(evt);
+            }
+        });
+
+        txtEmail.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtEmail.setText("E-mail *");
+
+        txtCelular.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtCelular.setText("Celular *");
+
+        campoRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("############"))));
+
         javax.swing.GroupLayout painelContratanteLayout = new javax.swing.GroupLayout(painelContratante);
         painelContratante.setLayout(painelContratanteLayout);
         painelContratanteLayout.setHorizontalGroup(
@@ -221,33 +272,45 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addComponent(txtCamposObrigatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(painelContratanteLayout.createSequentialGroup()
-                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtObservacoes)
-                            .addComponent(campoObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(painelContratanteLayout.createSequentialGroup()
-                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtRG)
-                                .addComponent(txtCPF)
-                                .addComponent(txtNome)
-                                .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botaoCadastraCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEndereco))
-                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoObservacoes, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtRG)
+                            .addComponent(txtCPF)
+                            .addComponent(txtNome)
+                            .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoCadastraCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEndereco)
                             .addComponent(txtCartaoObrigatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(campoCPF, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoRG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelDadosImovel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContratanteLayout.createSequentialGroup()
-                                .addComponent(botaoCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoEndereco, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoCPF)
+                            .addComponent(txtObservacoes)
+                            .addGroup(painelContratanteLayout.createSequentialGroup()
+                                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmail))
                                 .addGap(18, 18, 18)
-                                .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(25, 25, 25))))
+                                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCelular)
+                                    .addComponent(campoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoNome)
+                            .addComponent(campoRG))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContratanteLayout.createSequentialGroup()
+                                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(painelDadosImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(painelContratanteLayout.createSequentialGroup()
+                                        .addComponent(botaoCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContratanteLayout.createSequentialGroup()
+                                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRepitaSenha)
+                                    .addComponent(txtDigiteSenha))
+                                .addGap(103, 103, 103))))))
         );
         painelContratanteLayout.setVerticalGroup(
             painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,21 +334,41 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(painelDadosImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(txtObservacoes)
+                .addGap(9, 9, 9)
+                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelContratanteLayout.createSequentialGroup()
+                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail)
+                            .addComponent(txtCelular))
+                        .addGap(12, 12, 12)
+                        .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(painelContratanteLayout.createSequentialGroup()
+                        .addComponent(txtDigiteSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
+                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtObservacoes)
+                    .addComponent(txtRepitaSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addComponent(botaoCadastraCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCartaoObrigatorio))
-                    .addComponent(botaoCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addComponent(botaoCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCartaoObrigatorio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCamposObrigatorios))
         );
 
@@ -297,33 +380,15 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(painelContratante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(painelContratante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkSacadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSacadaActionPerformed
+    private void campoCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCelularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_checkSacadaActionPerformed
-
-    private void checkQuintalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkQuintalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkQuintalActionPerformed
-
-    private void checkAnivalEstimacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAnivalEstimacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkAnivalEstimacaoActionPerformed
-
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
-
-    private void comboNumeroComodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroComodosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboNumeroComodosActionPerformed
+    }//GEN-LAST:event_campoCelularActionPerformed
 
     private void botaoCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelaActionPerformed
         ControladorContratante.getInstance().abreTelaInicial();
@@ -332,98 +397,180 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
 
     private void botaoCadastraUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraUsuarioActionPerformed
         //colocar codigo para cadastrar usuário
-        if(verificaDados()){    
+        if (verificaDados()) {
             cpf = Long.parseLong(cpfTemp);
-                System.out.println(cpf);
-            rg = Long.parseLong(rgTemp); 
-                System.out.println(rg);
-              
-        //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());   
-                 
-        ControladorContratante.getInstance().cadastrarContratante(
-            cpf,
-            rg, 
-            campoNome.getText().trim(), 
-            campoEndereco.getText().trim(),
-            campoObservacoes.getText().trim(), 
-            2,//numComodos, 
-            checkQuintal.isSelected(),
-            checkSacada.isSelected(), 
-            checkAnivalEstimacao.isSelected(), 
-            jCheckBox4.isSelected()  
-        
-        ); 
+            System.out.println(cpf);
+            rg = Long.parseLong(rgTemp);
+            System.out.println(rg);
+
+            //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());
+            String senha = new String(campoSenha.getPassword());
+            ControladorContratante.getInstance().cadastrarContratante(
+                senha,
+                cpf,
+                rg,
+                campoNome.getText().trim(),
+                campoEndereco.getText().trim(),
+                campoObservacoes.getText().trim(),
+                2,//numComodos,
+                checkQuintal.isSelected(),
+                checkSacada.isSelected(),
+                checkAnivalEstimacao.isSelected(),
+                checkOutraCoisa.isSelected(),
+                rgTemp,
+                campoEmail.getText().trim()
+            );
         }
-        
-        
-        
+
     }//GEN-LAST:event_botaoCadastraUsuarioActionPerformed
+
+    private void checkOutraCoisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutraCoisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkOutraCoisaActionPerformed
+
+    private void checkAnivalEstimacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAnivalEstimacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkAnivalEstimacaoActionPerformed
+
+    private void checkQuintalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkQuintalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkQuintalActionPerformed
+
+    private void comboNumeroComodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNumeroComodosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNumeroComodosActionPerformed
 
     private void botaoCadastraCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastraCartaoActionPerformed
         ControladorContratante.getInstance().abreTelaCartao();
     }//GEN-LAST:event_botaoCadastraCartaoActionPerformed
-    
-    public void cartaoCadastrado(){
+
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
+        campoSenha.setText("");
+    }//GEN-LAST:event_campoSenhaFocusGained
+
+    private void campoRepeteSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoRepeteSenhaFocusGained
+        campoRepeteSenha.setText("");
+    }//GEN-LAST:event_campoRepeteSenhaFocusGained
+
+    public void cartaoCadastrado() {
         txtHasCartaCadastrado.setText("Cartão cadastrado");
         botaoCadastraCartao.setText("Atualizar cartão");
     }
-    
-    private boolean verificaDados(){
+
+    private boolean verificaDados() {
         cpfTemp = campoCPF.getText().trim().replaceAll("\\.|-", "");
+        celTemp = campoCelular.getText().trim().replaceAll(" ", "");
+            System.out.println(celTemp);
         rgTemp = campoRG.getText().trim();
-        if(campoNome.getText().trim().isEmpty()){
+        
+        if (campoNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu nome", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
-        }
-        if(cpfTemp.isEmpty()){
+        } else if (cpfTemp.isEmpty()) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar CPF", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
-        } else if(!ControladorContratante.getInstance().validaCPF(cpfTemp)){
+        } else if (!ControladorContratante.getInstance().validaCPF(cpfTemp)) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar CPF válido", "CPF inválido", JOptionPane.DEFAULT_OPTION);
             return false;
-        }
-        
-        if(rgTemp.isEmpty()){
+        } else if (rgTemp.isEmpty()) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar RG", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
-        }
-        if(campoEndereco.getText().trim().isEmpty()){
+        } else if (campoEndereco.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu endereço", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
-        }
-        if(!txtHasCartaCadastrado.getText().equals("Cartão cadastrado")){
+        } else if (celTemp.isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um número de celular válido", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if (celTemp.length() != 14){    
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um número de celular válido", "Celular inválido", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if (campoEmail.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu e-mail", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if (!campoEmail.getText().trim().contains("@")){    
+            JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um e-mail válido", "E-mail inválido", JOptionPane.DEFAULT_OPTION);
+            return false;    
+        } else if (!txtHasCartaCadastrado.getText().equals("Cartão cadastrado")) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar um cartão", "Cartão Obrigatório", JOptionPane.DEFAULT_OPTION);
             return false;
+        } else if (campoSenha.getPassword().length != 8 || campoRepeteSenha.getPassword().length != 8) {
+            JOptionPane.showMessageDialog(null, "A senha precisa ter 8 dígitos com numeros e letras", "Senha não confere", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if (!verificaRepeteSenha(campoSenha.getPassword(), campoRepeteSenha.getPassword())) {
+            JOptionPane.showMessageDialog(null, "Senha não confere", "Senha não confere", JOptionPane.DEFAULT_OPTION);
+            return false;
+        } else if (!verificaCompexidadeSenha(campoSenha.getPassword())) {
+            JOptionPane.showMessageDialog(null, "A senha precisa ter 8 dígitos com numeros e letras", "Senha não confere", JOptionPane.DEFAULT_OPTION);
+            return false;
         }
-        
+
         return true;
     }
-    
+
+    private boolean verificaRepeteSenha(char[] senha, char[] confereSenha) {
+        String senhaTemp = new String(senha);
+        String senhaConfereTemp = new String(confereSenha);
+        return senhaTemp.equals(senhaConfereTemp);
+    }
+
+    private boolean verificaCompexidadeSenha(char[] senha) {
+        String senhaTemp = new String(senha);
+        return senhaTemp.replaceAll("1^9", "").length() == senhaTemp.length()
+                && senhaTemp.replaceAll("a^Z", "").length() == senhaTemp.length();
+    }
+
+    public void limpaDados() {
+        botaoCadastraCartao.setText("Cadastrar cartão *");
+        txtCartaoObrigatorio.setText("Sem cartão cadastrado");
+        campoCPF.setValue(null);
+        campoCelular.setValue(null);
+        campoEmail.setText("");
+        campoEndereco.setText("");
+        campoNome.setText("");
+        campoObservacoes.setText("");
+        campoRG.setText("");
+        campoRepeteSenha.removeAll();
+        campoSenha.repaint();
+        checkAnivalEstimacao.setSelected(false);
+        checkQuintal.setSelected(false);
+        checkSacada.setSelected(false);
+        comboNumeroComodos.setSelectedIndex(0);
+        checkOutraCoisa.setSelected(false);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastraCartao;
     private javax.swing.JButton botaoCadastraUsuario;
     private javax.swing.JButton botaoCancela;
     private javax.swing.JFormattedTextField campoCPF;
+    private javax.swing.JFormattedTextField campoCelular;
+    private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoEndereco;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoObservacoes;
-    private javax.swing.JTextField campoRG;
+    private javax.swing.JFormattedTextField campoRG;
+    private javax.swing.JPasswordField campoRepeteSenha;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JCheckBox checkAnivalEstimacao;
+    private javax.swing.JCheckBox checkOutraCoisa;
     private javax.swing.JCheckBox checkQuintal;
     private javax.swing.JCheckBox checkSacada;
     private javax.swing.JComboBox<String> comboNumeroComodos;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JPanel painelContratante;
     private javax.swing.JPanel painelDadosImovel;
     private javax.swing.JLabel txtCPF;
     private javax.swing.JLabel txtCamposObrigatorios;
     private javax.swing.JLabel txtCartaoObrigatorio;
+    private javax.swing.JLabel txtCelular;
+    private javax.swing.JLabel txtDigiteSenha;
+    private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtEndereco;
     private javax.swing.JLabel txtHasCartaCadastrado;
     private javax.swing.JLabel txtNome;
     private javax.swing.JLabel txtNumeroComodos;
     private javax.swing.JLabel txtObservacoes;
     private javax.swing.JLabel txtRG;
+    private javax.swing.JLabel txtRepitaSenha;
     // End of variables declaration//GEN-END:variables
 }
