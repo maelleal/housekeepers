@@ -62,6 +62,7 @@ public class ControladorContratante {
             // serializa
             ContratanteDAO.getInstancia().put(contratante);
             ControladorPrincipal.getInstance().abreTelaInicial();
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso", "Cadastro de usuário", JOptionPane.DEFAULT_OPTION);
             TelaCadastroContratante.getInstance().dispose();
             TelaCadastroContratante.getInstance().limpaDados();
         }

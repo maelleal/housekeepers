@@ -114,12 +114,16 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtObservacoes.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtObservacoes.setText("Observações");
 
+        campoEndereco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        campoNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         painelDadosImovel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Dados do imóvel"));
 
         txtNumeroComodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtNumeroComodos.setText("* Numero de cômodos:");
 
-        comboNumeroComodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dois cômodos", "Três cômodos", "Quatro cômodos", "Cinco cômodos", "Seis cômodos", "Sete cômodos", "Oito ou mais cômodos" }));
+        comboNumeroComodos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2 cômodos", "3 cômodos", "4 cômodos", "5 cômodos", "6 cômodos", "7 cômodos", "8 ou mais cômodos" }));
         comboNumeroComodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboNumeroComodosActionPerformed(evt);
@@ -216,6 +220,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        campoCPF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtDigiteSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtDigiteSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -267,6 +272,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        campoRG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtDigiteSenha1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtDigiteSenha1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -348,7 +354,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addComponent(painelDadosImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(txtDigiteSenha)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -375,12 +381,12 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addComponent(txtRepitaSenha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)))
+                        .addGap(77, 77, 77)))
                 .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addComponent(botaoCadastraCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addComponent(botaoCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCartaoObrigatorio)
@@ -418,8 +424,9 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
             System.out.println(cpf);
             rg = Long.parseLong(rgTemp);
             System.out.println(rg);
-
-            //int numComodos = Integer.parseInt(comboNumeroComodos.getSelectedItem().toString());
+            String numComodosTemp = comboNumeroComodos.getSelectedItem().toString().trim();
+            int numComodos = Integer.parseInt(numComodosTemp, 0);
+            
             String senha = new String(campoSenha.getPassword());
             ControladorContratante.getInstance().cadastrarContratante(
                 senha,
@@ -428,7 +435,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                 campoNome.getText().trim(),
                 campoEndereco.getText().trim(),
                 campoObservacoes.getText().trim(),
-                2,//numComodos,
+                numComodos,
                 checkQuintal.isSelected(),
                 checkSacada.isSelected(),
                 checkAnivalEstimacao.isSelected(),

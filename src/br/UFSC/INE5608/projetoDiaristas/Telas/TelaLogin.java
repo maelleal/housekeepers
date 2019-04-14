@@ -30,6 +30,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private TelaLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        campoSenha.setText("********");
     }
     
       
@@ -214,6 +215,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         ControladorPrincipal.getInstance().abreTelaInicial();
         dispose();
+        limpaDados();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoResetarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoResetarSenhaActionPerformed
@@ -228,6 +230,10 @@ public class TelaLogin extends javax.swing.JFrame {
         campoSenha.setText("");
     }//GEN-LAST:event_campoSenhaFocusGained
 
+    public void limpaDados(){
+        campoSenha.setText("********");
+        campoUsuario.setValue(null);
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
