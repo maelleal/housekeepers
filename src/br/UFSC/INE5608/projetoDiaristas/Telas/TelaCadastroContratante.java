@@ -78,6 +78,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtEmail = new javax.swing.JLabel();
         txtCelular = new javax.swing.JLabel();
         campoRG = new javax.swing.JFormattedTextField();
+        txtDigiteSenha1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,9 +218,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         }
 
         txtDigiteSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        txtDigiteSenha.setText("Digite uma senha: *");
+        txtDigiteSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDigiteSenha.setText("Escolha uma senha de 8 dígitos,");
 
         txtRepitaSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtRepitaSenha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtRepitaSenha.setText("Repita a senha: *");
 
         campoSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -259,7 +262,15 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtCelular.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtCelular.setText("Celular *");
 
-        campoRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("############"))));
+        try {
+            campoRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtDigiteSenha1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtDigiteSenha1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtDigiteSenha1.setText("com letras e números: *");
 
         javax.swing.GroupLayout painelContratanteLayout = new javax.swing.GroupLayout(painelContratante);
         painelContratante.setLayout(painelContratanteLayout);
@@ -306,11 +317,13 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                                 .addGap(25, 25, 25))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContratanteLayout.createSequentialGroup()
                                 .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRepitaSenha)
-                                    .addComponent(txtDigiteSenha))
-                                .addGap(103, 103, 103))))))
+                                    .addComponent(txtDigiteSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(campoSenha)
+                                        .addComponent(campoRepeteSenha)
+                                        .addComponent(txtDigiteSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                        .addComponent(txtRepitaSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(80, 80, 80))))))
         );
         painelContratanteLayout.setVerticalGroup(
             painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,8 +346,11 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addComponent(txtEndereco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(painelDadosImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addGroup(painelContratanteLayout.createSequentialGroup()
+                        .addComponent(painelDadosImovel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDigiteSenha)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -344,27 +360,27 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
                         .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campoCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtObservacoes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(painelContratanteLayout.createSequentialGroup()
-                        .addComponent(txtDigiteSenha)
+                        .addComponent(txtDigiteSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)))
-                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtObservacoes)
-                    .addComponent(txtRepitaSenha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtHasCartaCadastrado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtRepitaSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoRepeteSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)))
                 .addGroup(painelContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoCadastraUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelContratanteLayout.createSequentialGroup()
                         .addComponent(botaoCadastraCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addComponent(botaoCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCartaoObrigatorio)
@@ -564,6 +580,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
     private javax.swing.JLabel txtCartaoObrigatorio;
     private javax.swing.JLabel txtCelular;
     private javax.swing.JLabel txtDigiteSenha;
+    private javax.swing.JLabel txtDigiteSenha1;
     private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtEndereco;
     private javax.swing.JLabel txtHasCartaCadastrado;
