@@ -267,12 +267,13 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         txtCelular.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtCelular.setText("Celular *");
 
-        try {
-            campoRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        campoRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         campoRG.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoRG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRGActionPerformed(evt);
+            }
+        });
 
         txtDigiteSenha1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtDigiteSenha1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -475,6 +476,10 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         campoRepeteSenha.setText("");
     }//GEN-LAST:event_campoRepeteSenhaFocusGained
 
+    private void campoRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRGActionPerformed
+
     public void cartaoCadastrado() {
         txtHasCartaCadastrado.setText("Cartão cadastrado");
         botaoCadastraCartao.setText("Atualizar cartão");
@@ -484,7 +489,7 @@ public class TelaCadastroContratante extends javax.swing.JFrame {
         cpfTemp = campoCPF.getText().trim().replaceAll("\\.|-", "");
         celTemp = campoCelular.getText().trim().replaceAll(" ", "");
             System.out.println(celTemp);
-        rgTemp = campoRG.getText().trim();
+        rgTemp = campoRG.getText().trim().substring(0, 11);
         
         if (campoNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "É obrigatorio cadastrar o seu nome", "Campo Obrigatório", JOptionPane.DEFAULT_OPTION);

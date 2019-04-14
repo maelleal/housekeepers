@@ -49,4 +49,8 @@ public class ControladorDiarista {
         //TelaPrincipalDiarista.getInstance().setDadosDiarista();
         TelaPrincipalDiarista.getInstance().setVisible(true);
     }
+
+    public void abreTelaInicial() {
+        ControladorPrincipal.getInstance().abreTelaInicial();
+    }
 }
